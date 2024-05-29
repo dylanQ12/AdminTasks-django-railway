@@ -1,0 +1,58 @@
+.photo-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px; /* Reducción del espacio entre las fotos */
+    justify-content: center;
+    padding: 20px;
+}
+.photo {
+    flex: 1 1 calc(25% - 5px); /* 4 fotos por fila en pantallas grandes, con menor espacio */
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: transparent; /* Asegura que no haya fondo blanco */
+}
+.photo::before {
+    content: "";
+    display: block;
+    padding-top: 100%; /* Relación de aspecto 1:1 */
+}
+.photo img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen para cubrir el contenedor */
+    transition: transform 0.3s ease;
+}
+.photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.photo:hover img {
+    transform: scale(1.1);
+}
+
+/* Media queries para pantallas medianas */
+@media (max-width: 1024px) {
+    .photo {
+        flex: 1 1 calc(33.333% - 5px); /* 3 fotos por fila en pantallas medianas */
+    }
+}
+
+/* Media queries para pantallas pequeñas */
+@media (max-width: 768px) {
+    .photo {
+        flex: 1 1 calc(50% - 5px); /* 2 fotos por fila en pantallas pequeñas */
+    }
+}
+
+/* Media queries para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .photo {
+        flex: 1 1 calc(50% - 5px); /* 2 fotos por fila en pantallas muy pequeñas */
+    }
+}

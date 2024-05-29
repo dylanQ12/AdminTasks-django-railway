@@ -1,0 +1,45 @@
+{% extends 'dashboard.html' %} {% load static %}
+
+{% block content %}
+<div class="row justify-content-center align-items-center">
+    <div class="col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title text-center">Nuevo Usuario</h4>
+          <form class="forms-sample" method="post" action="{% url 'crear-usuario' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="title">Foto de perfil</label>
+                <input type="text" class="form-control" name="foto" placeholder=" URL de la Foto" required>
+              </div>
+            <div class="form-group">
+              <label for="title">Nombre</label>
+              <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
+            </div>
+            <div class="form-group">
+              <label for="desc">Apellido</label>
+              <input type="text" class="form-control" name="apellido" placeholder="Apellido"  required>
+            </div>
+            <div class="form-group">
+                <label for="desc">Email</label>
+                <input type="email" class="form-control" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <label for="desc">Nombre de Usuario</label>
+                <input type="text" class="form-control" name="username" placeholder="Nombre de Usuario" required>
+            </div>
+            <div class="form-group">
+                <label for="desc">Password</label>
+                <input type="password" class="form-control" name="password" placeholder="Password" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary mr-2">Guardar</button>
+            <a class="btn btn-warning" href="{% url 'usuarios' %}">Cancelar</a>
+          </form>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}
+
+{% block footer %} {% endblock footer %}

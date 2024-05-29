@@ -1,0 +1,45 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <a class="btn btn-info mb-3" href="{% url 'crear-album' %}">Nuevo Álbum</a>
+    <div id="messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container">
+    <h3 class="text-center mb-4">Mis Fotos</h3>
+    <div class="row">
+        {% for album in albums %}
+        <div class="col-6 col-md-4 mb-3 album-col mb-2">
+            <!-- Al hacer clic en la imagen, se redirige a la vista de fotos del álbum -->
+            {% if album.ultima_foto and album.ultima_foto.imagen %}
+            <a href="{% url 'ver-fotos' album.id %}" class="d-block">
+                <img class="foto img-fluid mb-3" src="{{ album.ultima_foto.imagen.url }}" alt="{{ album.titulo }}" style="width: 100%; height: 250px;">
+            </a>
+            {% else %}
+            <a href="{% url 'ver-fotos' album.id %}" class="d-block">
+                <img class="foto img-fluid mb-3" src="data:image/png;base64,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" alt="album-vacio" style="width: 100%; height: 250px;">
+            </a>
+            {% endif %}
+            <h5 class="mb-3"><a style="color: white;" href="{% url 'editar-album' album.id %}">{{ album.titulo }}</a></h5>
+            <p class="text-muted">{{ album.fecha_creacion|date:"Y-m-d H:i" }}</p>
+            
+            <form method="post" action="{% url 'eliminar-album' album.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar el albúm: {{ album.titulo }}?');">Eliminar</button>
+            </form>
+        </div>
+        {% empty %}
+        <p class="text-center">No hay álbumes disponibles.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
+

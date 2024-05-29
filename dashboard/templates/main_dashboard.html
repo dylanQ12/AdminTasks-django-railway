@@ -1,0 +1,143 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  .custom-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+
+  .custom-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .custom-card:active {
+    transform: scale(0.95);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .card-link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .card-link:hover .custom-card {
+    text-decoration: none;
+  }
+</style>
+
+<h4>¡Hola {{ user.first_name }}! </h4><br>
+
+{% if messages %}
+<div id="messages">
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }}" role="alert">
+    {{ message }}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<div class="row">
+  <div class="col-sm-4 grid-margin">
+    <a href="{% url 'proyectos' %}" class="card-link" style="color:white">
+      <div class="card custom-card">
+        <div class="card-body">
+          <h3 style="color:white;">Proyectos</h3>
+          <div class="row">
+            <div class="col-8 col-sm-12 col-xl-8 my-auto">
+              <div class="d-flex d-sm-block d-md-flex align-items-center">
+                {% if proyectos_count == 0 %}
+                <p class="ml-2 mb-0 font-weight-medium">Sin proyectos</p>
+                {% else %}
+                <h2 class="mb-0"> {{ proyectos_count }} </h2><br>
+                <p class="ml-2 mb-0 font-weight-medium">Creados</p>
+                {% endif %}
+              </div>
+            </div>
+            <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+              <i class="icon-lg fas fa-folder text-warning ml-auto"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="col-sm-4 grid-margin">
+    <a href="{% url 'tareas-pendientes' %}" class="card-link" style="color:white">
+      <div class="card custom-card">
+        <div class="card-body">
+          <h3 style="color:white;">Tareas</h3>
+          <div class="row">
+            <div class="col-8 col-sm-12 col-xl-8 my-auto">
+              <div class="d-flex d-sm-block d-md-flex align-items-center">
+                {% if tareas_count == 0 %}
+                <p class="ml-2 mb-0 font-weight-medium">Sin tareas pendientes</p>
+                {% else %}
+                <h2 class="mb-0"> {{ tareas_count }} </h2>
+                <p class="ml-2 mb-0 font-weight-medium">Pendientes</p>
+                {% endif %}
+              </div>
+            </div>
+            <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+              <i class="icon-lg fas fa-list text-danger ml-auto"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="col-sm-4 grid-margin">
+    <a href="{% url 'galeria' %}" class="card-link" style="color:white">
+      <div class="card custom-card">
+        <div class="card-body">
+          <h3 style="color:white;">Galería</h3>
+          <div class="row">
+            <div class="col-8 col-sm-12 col-xl-8 my-auto">
+              <div class="d-flex d-sm-block d-md-flex align-items-center">
+                {% if fotos_count == 0 %}
+                <p class="ml-2 mb-0 font-weight-medium">Sin Fotos</p>
+                {% else %}
+                <h2 class="mb-0"> {{fotos_count}} </h2>
+                <p class="ml-2 mb-0 font-weight-medium">Fotos</p>
+                {% endif %}
+              </div>
+            </div>
+            <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+              <i class="icon-lg fas fa-images text-light text-light ml-auto"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+  {% if user.is_superuser %}
+  <div class="col-sm-4 grid-margin">
+    <a href="{% url 'usuarios' %}" class="card-link" style="color:white">
+      <div class="card custom-card">
+        <div class="card-body">
+          <h3 style="color:white;">Usuarios</h3>
+          <div class="row">
+            <div class="col-8 col-sm-12 col-xl-8 my-auto">
+              <div class="d-flex d-sm-block d-md-flex align-items-center">
+                {% if usuarios_count == 0 %}
+                <p class="ml-2 mb-0 font-weight-medium">Sin usuarios</p>
+                {% else %}
+                <h2 class="mb-0"> {{usuarios_count}} </h2>
+                <p class="ml-2 mb-0 font-weight-medium">Creados</p>
+                {% endif %}
+              </div>
+            </div>
+            <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+              <i class="icon-lg fas fa-users text-info ml-auto"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+{% endif %}
+{% endblock content %}

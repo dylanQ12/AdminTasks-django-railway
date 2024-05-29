@@ -1,0 +1,68 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    .card {
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-title a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .card-title a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="container">
+    <a class="btn btn-primary" href="{% url 'crear-proyecto' %}">Nuevo Proyecto</a>
+</div>
+
+<div class="container mt-4">
+    {% if messages %}
+    <div id="messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <h4 class="text-center mb-3 animate__animated animate__fadeInDown">Proyectos</h4>
+    <div class="row">
+        {% for proyecto in proyectos %}
+        <div class="col-md-4 mb-3 animate__animated animate__fadeInUp">
+            <a href="{% url 'tareas' proyecto.id %}" style="text-decoration: none; color: inherit;">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">{{ proyecto.titulo }}</h4>
+                        <p class="card-text">{{ proyecto.descripcion }}</p>
+                        <p class="text-muted"><strong>Creación:</strong> {{ proyecto.creado|date:"Y-m-d H:i" }}</p>
+                        <form method="post" action="{% url 'eliminar-proyecto' proyecto.id %}">
+                            {% csrf_token %}
+                            <a href="{% url 'editar-proyecto' proyecto.id %}"
+                                class="btn btn-info btn-sm mr-1">Editar</a>
+                            <button class="btn btn-danger btn-sm"
+                                onclick="return confirm('Este proyecto contiene tareas. ¿Estas seguro de eliminarlo?');">Eliminar</button>
+                        </form>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p class="text-center">No hay proyectos disponibles.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

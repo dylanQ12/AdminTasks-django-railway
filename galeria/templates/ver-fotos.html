@@ -1,0 +1,72 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mb-4">
+    <a class="btn btn-primary mb-3" href="{% url 'galeria' %}">Volver</a>
+    <a class="btn btn-success mb-3" href="{% url 'subir-foto' album.id %}">Subir Foto</a>
+    <div class="mb-2" id="messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    <h4 class="text-center mb-2"> {{ album.titulo }} </h4>
+</div>
+
+<div class="container">
+    <div class="photo-gallery">
+        {% for foto in album.fotos.all %}
+        <div class="photo">
+            {% if foto.imagen and foto.imagen.url %}
+            <img src="{{ foto.imagen.url }}" alt="Foto" class="img-fluid" onclick="openModal();currentSlide({{ forloop.counter }})">
+            {% else %}
+            <p>No hay imagen cargada</p>
+            {% endif %}
+        </div>
+        {% empty %}
+        <p class="text-center">No hay fotos en este álbum.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="container-fluid modal" onclick="closeModal(event)">
+    <span class="close cursor" onclick="closeModal()">&times;</span>
+    <div class="modal-content" onclick="event.stopPropagation();">
+
+        {% for foto in album.fotos.all %}
+        <div class="mySlides">
+            <div class="numbertext">{{ forloop.counter }} / {{ album.fotos.count }}</div>
+            <img src="{{ foto.imagen.url }}" style="width:100%">
+        </div>
+        {% endfor %}
+
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+        <div class="caption-container">
+            <p id="caption"></p>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

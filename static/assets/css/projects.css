@@ -1,0 +1,24 @@
+/* Estilos para las tarjetas de proyectos */
+.card {
+    background-color: rgba(17, 17, 17, 0.95); /* Coincide con el sidebar y navbar */
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra ligera para dar profundidad */
+}
+
+.card:hover {
+    background-color: rgba(17, 17, 17, 1); /* Un poco más opaco al pasar el mouse */
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title, .card-text {
+    color: #ccc; /* Texto claro para mejorar contraste */
+}
+
+
+
+

@@ -1,0 +1,27 @@
+{% extends 'dashboard.html' %} {% load static %}
+
+{% block content %}
+<div class="row justify-content-center align-items-center">
+    <div class="col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title text-center">Nueva Tarea</h4>
+          <form class="forms-sample" method="post" action="{% url 'crear-tarea' id=proyecto.id %}">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="title">Título</label>
+              <input type="text" class="form-control" name="titulo" placeholder="Título" required>
+            </div>
+            <div class="form-group mb-3">
+              <label for="desc">Descipción</label>
+              <input type="text" class="form-control" name="desc" placeholder="Descripción" required>
+            </div>
+            <button type="submit" class="btn btn-primary mr-2">Guardar</button>
+            <a class="btn btn-warning" href="{% url 'tareas' id=proyecto.id %}">Cancelar</a>
+          </form>
+        </div>
+      </div>
+    </div>
+{% endblock content %}
+
+{% block footer %} {% endblock footer %}

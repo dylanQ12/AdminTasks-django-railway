@@ -1,0 +1,40 @@
+{% load static %}
+
+{% block header %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>AdminTasks</title>
+  <!-- plugins:css -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'assets/vendors/mdi/css/materialdesignicons.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/css/vendor.bundle.base.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/jvectormap/jquery-jvectormap.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/owl-carousel-2/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/owl-carousel-2/owl.theme.default.min.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <!-- End Plugin css for this page -->
+  <!-- inject:css -->
+  <!-- endinject -->
+  <!-- Layout styles -->
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/foto.css' %}">
+  <!--<link rel="stylesheet" href="{% static 'assets/css/galery/galery.css' %}">-->
+  <link rel="stylesheet" href="{% static 'assets/css/galery/modal.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/galery/view-photos.css' %}">
+  <!-- End layout styles -->
+</head>
+{% endblock header %}
+
+{% block login %} {% endblock login %}
+
+<!-- Dashboard -->
+{% block dashboard %} {% endblock dashboard %}
+
+</html>

@@ -1,0 +1,33 @@
+{% extends 'dashboard.html' %}
+
+{% block content %}
+<div class="row justify-content-center align-items-center">
+    <div class="col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title text-center">Editar Foto</h4>
+          <form class="forms-sample" method="post" action="{% url 'editar-foto' foto.id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="foto">Foto</label><br>
+                {% if foto.imagen and foto.imagen.url %}
+                <img class="mb-3" src="{{ foto.imagen.url }}" alt="{{ foto.descripcion }}" width="80">
+                {% else %}
+                <p>No hay imagen cargada</p>
+                {% endif %}
+                <input type="file" class="form-control" name="foto" placeholder="Upload Image" required>
+            </div>
+            <div class="form-group">
+              <label for="desc">Descripción</label>
+              <input type="text" class="form-control" name="desc" placeholder="Descripción" value="{{ foto.descripcion }}" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary mr-2">Guardar</button>
+            <a class="btn btn-warning" href="{% url 'ver-fotos' album.id %}">Cancelar</a>
+          </form>
+        </div>
+      </div>
+    </div>
+{% endblock content %}
+
+{% block footer %}{% endblock footer %}

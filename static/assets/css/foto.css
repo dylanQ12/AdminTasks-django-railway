@@ -1,0 +1,35 @@
+/* Estilo mejorado para fotos */
+.foto {
+    width: 100%;            /* Hace que la imagen sea responsiva dentro de su contenedor */
+    height: 200px;           /* Mantiene la proporción de la imagen */
+    max-width: 200px;       /* Máximo ancho de la imagen */
+    max-height: 200px;      /* Máximo altura de la imagen */
+    object-fit: cover;      /* Asegura que la imagen cubra el área del contenedor sin perder sus proporciones */
+    border-radius: 10px;    /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave para dar profundidad */
+    transition: transform 0.3s ease; /* Transición suave para efectos al interactuar */
+}
+
+.foto:hover {
+    transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+}
+
+/* Estilo mejorado para contenedores de fotos, si es necesario */
+.vista-fotos {
+    display: flex;          /* Uso de Flexbox para un mejor control del layout */
+    flex-wrap: wrap;        /* Permite que los elementos se ajusten al ancho del contenedor */
+    justify-content: center;/* Centra los elementos horizontalmente */
+    align-items: center;    /* Centra los elementos verticalmente */
+    gap: 10px;              /* Espacio entre elementos */
+}
+
+/* Contenedor individual para cada foto si es necesario */
+.contenedor-foto {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;       /* Oculta cualquier parte de la imagen que exceda el contenedor */
+    border-radius: 10px;    /* Bordes redondeados para el contenedor */
+}
