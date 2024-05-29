@@ -146,7 +146,7 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
-# WHITENOISE_MANIFEST_STRICT = False
+WHITENOISE_MANIFEST_STRICT = False
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Media files.
