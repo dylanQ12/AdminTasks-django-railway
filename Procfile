@@ -1,1 +1,1 @@
-web: python manage.py collectstatic --noinput && gunicorn admin_tasks.wsgi
+web: python manage.py collectstatic --noinput && gunicorn admin_tasks.wsgi --workers 3 --timeout 120 --log-level debug
