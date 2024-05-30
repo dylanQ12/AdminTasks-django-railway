@@ -25,7 +25,6 @@
               <tr>
                 <th> # </th>
                 <th> Título </th>
-                <th> Descripción </th>
                 <th> Estado </th>
                 <th> F. de Creación </th>
                 <th> Acciones </th>
@@ -36,7 +35,6 @@
               <tr>
                 <td class="py-1">{{  forloop.counter }}</td>
                 <td> {{ tarea.titulo }} </td>
-                <td> {{ tarea.descripcion }} </td>
                 <td> 
                     {% if tarea.completada %}
                       <div class="badge badge-outline-success">Completada</div> 
